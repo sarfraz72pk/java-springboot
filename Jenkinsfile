@@ -1,22 +1,21 @@
 pipeline {
-    // where or who 1
     agent any
-    
-    // collection of stages
     stages{
+        stage('build'){
+            steps{
+                echo 'build'
+                sh 'mvn clean package'
+            }
+        }
         stage('Test'){
             steps{
+                echo 'test'
                 sh 'mvn test'
             }
         }
-        stage('Package'){
+        stage('Push to artifactory'){
             steps{
-                sh 'mvn clean package -Dmaven.test.skip=true'
-            }
-        }
-        stage('Deploy war'){
-            steps{
-                echo 'Deploy'
+                echo 'push to artifactory'
             }
         }
     }
