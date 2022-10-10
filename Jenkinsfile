@@ -4,11 +4,13 @@ pipeline {
         stage('build') {
             steps {
                 echo 'build'
+                sh 'mvn clean package'
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing code'
+                sh 'mvn test'
             }
         }
         stage('Sonarqube') {
