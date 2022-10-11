@@ -1,12 +1,6 @@
 pipeline {
     agent any 
     stages {
-        stage('validate') {
-            steps {
-                echo 'validate'
-                sh 'mvn validate'             
-            }
-        }
         stage('package') {
             steps {
                 echo 'package'
