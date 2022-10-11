@@ -1,10 +1,16 @@
 pipeline {
     agent any 
     stages {
-        stage('Build') {
+        stage('validate') {
             steps {
-                echo 'Build'
-                sh 'mvn package'             
+                echo 'validate'
+                sh 'mvn validate'             
+            }
+        }
+        stage('install') {
+            steps {
+                echo 'install'
+                sh 'mvn install'             
             }
         }
         stage('Test') {
@@ -13,9 +19,15 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        stage('Push to artifactory') {
+        stage('compile') {
             steps {
-                echo 'Push to artifactory'
+                echo 'compile'
+            }
+        }
+        stage('package') {
+            steps {
+                echo 'package'
+                sh 'mvn package'             
             }
         }
         stage('Deploy to QA') {
@@ -23,7 +35,6 @@ pipeline {
                 echo 'Deploy to QA'
             }
         }
-
         stage('Deploy to Prod') {
             steps {
                 echo 'Deploy to Prod'
