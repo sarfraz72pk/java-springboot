@@ -1,33 +1,22 @@
 pipeline {
     agent any
     stages{
-        stage('Build'){
+        stage('test'){
             steps{
-                echo 'Build'
-                sh 'mvn package'
-            }
-        }
-        stage('Test'){
-            steps{
-                echo 'Test'
                 sh 'mvn test'
             }
         }
-        stage('Push to artifactory'){
+        stage('package'){
             steps{
-                echo 'push to artifactory'
+                sh 'mvn clean package'
             }
         }
-        stage('Deploy to QA'){
-            steps{
-                echo 'Deploy to QA'
+        stage('Deploy war'){
+            steps {
+                echo 'deploy'
             }
         }
-        stage('Deploy to prod'){
-            steps{
-                echo 'Deploy to prod'
-            }
-        }
+    }
     post{
         failure{
             echo 'Build failed'
