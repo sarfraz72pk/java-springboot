@@ -7,10 +7,10 @@ pipeline {
                 sh 'mvn validate'             
             }
         }
-        stage('install') {
+        stage('package') {
             steps {
-                echo 'install'
-                sh 'mvn install'             
+                echo 'package'
+                sh 'mvn package'             
             }
         }
         stage('Test') {
@@ -19,15 +19,16 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        stage('compile') {
+        stage('install') {
             steps {
-                echo 'compile'
+                echo 'install'
+                sh 'mvn install'
             }
         }
-        stage('package') {
+        stage('Deploy') {
             steps {
-                echo 'package'
-                sh 'mvn package'             
+                echo 'deploy'
+                sh 'mvn deploy'             
             }
         }
         stage('Deploy to QA') {
