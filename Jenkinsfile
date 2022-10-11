@@ -4,7 +4,7 @@ pipeline {
         stage('Build'){
             steps{
                 echo 'Build'
-                sh 'mvn clean package'
+                sh 'mvn package'
             }
         }
         stage('Test'){
@@ -18,7 +18,16 @@ pipeline {
                 echo 'push to artifactory'
             }
         }
-    }
+        stage('Deploy to QA'){
+            steps{
+                echo 'Deploy to QA'
+            }
+        }
+        stage('Deploy to prod'){
+            steps{
+                echo 'Deploy to prod'
+            }
+        }
     post{
         failure{
             echo 'Build failed'
